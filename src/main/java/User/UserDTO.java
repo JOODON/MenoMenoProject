@@ -8,6 +8,9 @@ public class UserDTO {
     private String UserEmail;
     private String UserPhoneNumber;
 
+    public UserDTO(String userName, String userGender, String userID, String userPassword, String userEmail, String userGender1) {
+    }
+
     public String getUserName() {
         return UserName;
     }
