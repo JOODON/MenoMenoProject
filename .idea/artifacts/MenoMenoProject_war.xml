@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="MenoMenoProject:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>MenoMenoProject</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="MenoMenoProject-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="MenoMenoProject:war exploded" />
+    </root>
+  </artifact>
+</component>
