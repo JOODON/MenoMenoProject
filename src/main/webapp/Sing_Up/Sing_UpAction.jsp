@@ -25,21 +25,21 @@
         UserPassword=(String) request.getParameter("UserPassword");
     }
     if (request.getParameter("UserEmail") != null) {
-        UserEmail=(String) request.getParameter("UserEmail")+request.getParameter("UserEmail2");
+        UserEmail=(String) request.getParameter("UserEmail")+"@"+(String) request.getParameter("UserEmail2");
     }
     if (request.getParameter("UserPhoneNumber") != null) {
         UserPhoneNumber=(String) request.getParameter("UserPhoneNumber")+"-"+(String) request.getParameter("UserPhoneNumber2")+"-"+(String) request.getParameter("UserPhoneNumber3");
     }
-    if(UserName.equals("") || UserGender.equals("")|| UserID.equals("")|| UserPassword.equals("")|| UserEmail.equals("")|| UserGender.equals("")){
+    if(UserID.equals("")|| UserPassword.equals("")){
         PrintWriter script=response.getWriter();
         script.println("<script>");
         script.println("alert('입력 안된 사항이 있습니다!')");
-        script.println("location.href='index.jsp'");
+        script.println("location.href='history.back()'");
         script.println("</script>");
         script.close();
         return;
     }
-    UserDTO userDTO =new UserDTO(UserName,UserGender,UserID,UserPassword,UserEmail,UserGender);
+    UserDTO userDTO =new UserDTO(UserName,UserGender,UserID,UserPassword,UserEmail,UserPhoneNumber);
     UserDAO userDao=new UserDAO();
     int insertCount= userDao.addUser(userDTO);
 
