@@ -16,12 +16,14 @@ public class UserDTO {
         this.UserPassword = UserPassword;
         this.UserEmail = UserEmail;
         this.UserPhoneNumber = UserPhoneNumber;
-
     }
-    public UserDTO(String userID, String userPassword) {
+
+    public UserDTO() {
+        super();
         this.UserID = UserID;
         this.UserPassword = UserPassword;
     }
+
 
     public String getUserName() {
         return UserName;

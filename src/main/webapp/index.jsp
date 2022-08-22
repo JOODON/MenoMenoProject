@@ -2,13 +2,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title></title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
-<H1>안녕하세요</H1>
+<script>
+    location.href="http://localhost:8080/MenoMeno/MainPage/MainPage.jsp"
+</script>
 </body>
 </html>

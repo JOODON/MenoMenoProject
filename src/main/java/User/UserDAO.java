@@ -11,6 +11,8 @@ public class UserDAO {
     private static String dbID="root";
     private static String dbpassword="kkjjss103@";
 
+
+
     public int addUser(UserDTO userDTO){
         int insertCount=0;
         Connection conn=null;
@@ -45,7 +47,7 @@ public class UserDAO {
         }
         return insertCount;
     }
-    public int login(UserDTO userDTO){
+    public int login(String UserID,String UserPassword){
         int insertCount=0;
         Connection conn=null;
         PreparedStatement ps=null;
@@ -55,15 +57,15 @@ public class UserDAO {
             conn = DriverManager.getConnection(dburl,dbID,dbpassword);
             String SQL = "SELECT UserPassword FROM MenoMenoUser WHERE UserID=?";
             ps=conn.prepareStatement(SQL);
-            ps.setString(1,userDTO.getUserID());
+            ps.setString(1,UserID);
             rs=ps.executeQuery();
 
             if(rs.next()){
-                if (rs.getString(1).equals(userDTO.getUserPassword())) {
+                if (rs.getString(1).equals(UserPassword)) {
                     return 1;
                 }
                 else {
-                    return 0;
+                    return insertCount;
                 }
             }
             return -1;
