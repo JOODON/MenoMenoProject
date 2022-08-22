@@ -47,7 +47,7 @@
         PrintWriter script=response.getWriter();
         script.println("<script>");
         script.println("alert('회원가입에 성공했습니다')");
-        script.println("location.href='http://localhost:8080/MenoMeno/Login/login.jspjsp'");
+        script.println("location.href='http://localhost:8080/MenoMeno/Login/login.jsp'");
         script.println("</script>");
         script.close();
         return;

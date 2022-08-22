@@ -22,14 +22,14 @@
 <body>
 <section class="login-form">
     <h1>Meno Login</h1>
-    <form action="">
+    <form action="LoginAction.jsp" method="post">
         <div class="int-area">
-            <input type="text" name="id" id="id" autocapitalize="off" required title="아이디를 입력하세요.">
+            <input type="text" name="UserID" id="id" autocapitalize="off" required title="아이디를 입력하세요.">
             <label for="id" id="user-name">ID</label>
         </div>
 
         <div class="int-area">
-            <input type="password" name="pw" id="pw" autocapitalize="off" required title="비밀번호를 입력하세요.">
+            <input type="password" name="UserPassword" id="pw" autocapitalize="off" required title="비밀번호를 입력하세요.">
             <label for="pw" id="password">PASSWORD</label>
         </div>
 

@@ -8,7 +8,19 @@ public class UserDTO {
     private String UserEmail;
     private String UserPhoneNumber;
 
-    public UserDTO(String userName, String userGender, String userID, String userPassword, String userEmail, String userGender1) {
+    public UserDTO(String UserName, String userGender, String UserID, String UserPassword, String UserEmail, String UserPhoneNumber) {
+        super();
+        this.UserName = UserName;
+        this.UserGender = userGender;
+        this.UserID = UserID;
+        this.UserPassword = UserPassword;
+        this.UserEmail = UserEmail;
+        this.UserPhoneNumber = UserPhoneNumber;
+
+    }
+    public UserDTO(String userID, String userPassword) {
+        this.UserID = UserID;
+        this.UserPassword = UserPassword;
     }
 
     public String getUserName() {
