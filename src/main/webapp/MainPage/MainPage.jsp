@@ -21,6 +21,12 @@
     <title>메인 페이지</title>
 </head>
 <body>
+<%
+    String userID=null;
+    if (session.getAttribute("UserID")!= null){
+        userID=(String) session.getAttribute("UserID");
+    }
+%>
 <div class="header">
     <div class="header-title">
         <h1 class="maintitle">Meno Meno   <i class="fa-solid fa-book-open"></i>  </h1>
@@ -29,7 +35,17 @@
         <a href="#" class="main"><i class="fa-solid fa-house-chimney"></i> Home</a>
         <a href="#" class="Search"><i class="fa-solid fa-magnifying-glass"></i> Search</a>
         <a href="#" class="Contact"><i class="fa-regular fa-address-book"></i> Contact</a>
+        <%
+            if(userID == null){
+
+        %>
         <a href="http://localhost:8080/MenoMeno/Login/login.jsp" class="login"><i class="fa-regular fa-user"></i> login</a>
+        <%
+        }else{
+        %>
+        <a href="http://localhost:8080/MenoMeno/Login/LogoutAction.jsp" class="login"><i class="fa-regular fa-user"></i> LoginOut</a>
+        <%}
+        %>
         <a href="http://localhost:8080/MenoMeno/Sing_Up/Sing_Up.jsp" class="Custom"> <i class="fa-regular fa-user"></i> Custom Join</a>
     </div>
 </div>
@@ -40,7 +56,7 @@
     <p>소중한 추억들을 공유하고 공감하고</p>
     <span class="bt">
     <button class="Reading"><a class="Readinglink" href="http://localhost:8080/MenoMeno/ViewPage/View.jsp">글목록 보러 가기</a></button>
-    <button class="Writing"><a class="Writinglink" href="#">글 쓰러 가기</a></button>
+    <button class="Writing"><a class="Writinglink" href="http://localhost:8080/MenoMeno/WritePage/Write.jsp">글 쓰러 가기</a></button>
     </span>
 </div>
 

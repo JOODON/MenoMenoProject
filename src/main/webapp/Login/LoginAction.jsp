@@ -16,7 +16,6 @@
     if (session.getAttribute("UserID")!=null){
         UserID=(String) session.getAttribute("UserID");
     }
-
     if(UserID != null){
         PrintWriter script=response.getWriter();
         script.println("<script>");
@@ -24,8 +23,6 @@
         script.println("location.href='homepage.jsp'");
         script.println("</script>");
     }
-
-
     UserDAO userDAO=new UserDAO();
 
     int result= userDAO.login(UserDTO.getUserID(),UserDTO.getUserPassword());

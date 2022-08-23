@@ -73,10 +73,10 @@
             </table>
             <div class="go">
                 <div class="gobt1">
-                    <button type="submit" id="bwg">글 작성하기</button>
+                    <button type="submit" id="bwg"><a href="http://localhost:8080/MenoMeno/WritePage/Write.jsp">글 작성하기</a></button>
                 </div>
                 <div class="gobt2">
-                    <button type="submit" id="bhg">홈으로 가기</button>
+                    <button type="submit" id="bhg"><a href="http://localhost:8080/MenoMeno/MainPage/MainPage.jsp">홈으로 가기</a></button>
                 </div>
             </div>
         </div>
