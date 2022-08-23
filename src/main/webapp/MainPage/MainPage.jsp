@@ -39,7 +39,7 @@
     <p>당신의 오늘 하루 있었던 일을 기록해보세요</p>
     <p>소중한 추억들을 공유하고 공감하고</p>
     <span class="bt">
-    <button class="Reading"><a class="Readinglink" href="#">글목록 보러 가기</a></button>
+    <button class="Reading"><a class="Readinglink" href="http://localhost:8080/MenoMeno/ViewPage/View.jsp">글목록 보러 가기</a></button>
     <button class="Writing"><a class="Writinglink" href="#">글 쓰러 가기</a></button>
     </span>
 </div>
