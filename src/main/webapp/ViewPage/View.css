@@ -41,8 +41,7 @@ h1 {
     margin-right: 10px;
 
 }
-
-table, th, td {
+th, td {
     border: 2px solid #FF5675;
     border-collapse : collapse;
     margin-left: 10px;
@@ -96,7 +95,10 @@ td {
 
 .go {display: flex;
     justify-content: center;}
-
+.gobt{
+    display: flex;
+    justify-content: space-between;
+}
 button {
     color: #FF5675;
     width: 100px;

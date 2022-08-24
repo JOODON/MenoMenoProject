@@ -28,18 +28,19 @@
                     <th id="date">작성일</th>
                     <th id="view">조회수</th>
                 </tr>
-                <tr>
-                    <td>7</td>
-                    <td><a href="https://namu.wiki/w/%EA%B8%B0%EB%9F%AC%EA%B8%B0" target="_blank">기러기</a></td>
-                    <td>2022-08-04</td>
-                    <td>252</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td><a href="https://namu.wiki/w/%ED%86%A0%EB%A7%88%ED%86%A0" target="_blank">토마토</a></td>
-                    <td>2022-08-03</td>
-                    <td>666</td>
-                </tr>
+
+<%--                <tr>--%>
+<%--                    <td>7</td>--%>
+<%--                    <td><a href="https://namu.wiki/w/%EA%B8%B0%EB%9F%AC%EA%B8%B0" target="_blank">기러기</a></td>--%>
+<%--                    <td>2022-08-04</td>--%>
+<%--                    <td>252</td>--%>
+<%--                </tr>--%>
+<%--                <tr>--%>
+<%--                    <td>6</td>--%>
+<%--                    <td><a href="https://namu.wiki/w/%ED%86%A0%EB%A7%88%ED%86%A0" target="_blank">토마토</a></td>--%>
+<%--                    <td>2022-08-03</td>--%>
+<%--                    <td>666</td>--%>
+<%--                </tr>--%>
                 <tr>
                     <td>5</td>
                     <td><a href="https://namu.wiki/w/%EC%8A%A4%EC%9C%84%EC%8A%A4" target="_blank">스위스</a></td>
@@ -77,6 +78,14 @@
                 </div>
                 <div class="gobt2">
                     <button type="submit" id="bhg"><a href="http://localhost:8080/MenoMeno/MainPage/MainPage.jsp">홈으로 가기</a></button>
+                </div>
+            </div>
+            <div class="gobt">
+                <div class="gobt3">
+                    <button type="submit" id="bwg"><a>이전</a></button>
+                </div>
+                <div class="gobt4">
+                    <button type="submit" id="bhg"><a>다음</a></button>
                 </div>
             </div>
         </div>
