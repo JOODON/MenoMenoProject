@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ page import="java.io.PrintWriter" %>
+<%@ page import="BBS.BBSDTO" %>
+<%@ page import="BBS.BBSDAO" %>
+<%@ page import="java.util.ArrayList"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,6 +20,16 @@
     <title>글목록 페이지</title>
 </head>
 <body>
+<%
+    String userID=null;
+    if (session.getAttribute("UserID")!= null){
+        userID=(String) session.getAttribute("UserID");
+    }
+    int pageNumber=1;
+    if(request.getParameter("pageNumber") != null ){
+        pageNumber=Integer.parseInt(request.getParameter("pageNumber"));
+    }
+%>
 <div class="bodyy">
     <div>
         <h1 id="list">글목록 게시판</h1>
@@ -28,65 +41,53 @@
                     <th id="date">작성일</th>
                     <th id="view">조회수</th>
                 </tr>
+                <%
+                    BBSDAO bbsdao=new BBSDAO();
+                    ArrayList<BBSDTO> list =bbsdao.getList(pageNumber);
+                    for (int i=0; i< list.size(); i++){
 
-<%--                <tr>--%>
-<%--                    <td>7</td>--%>
-<%--                    <td><a href="https://namu.wiki/w/%EA%B8%B0%EB%9F%AC%EA%B8%B0" target="_blank">기러기</a></td>--%>
-<%--                    <td>2022-08-04</td>--%>
-<%--                    <td>252</td>--%>
-<%--                </tr>--%>
-<%--                <tr>--%>
-<%--                    <td>6</td>--%>
-<%--                    <td><a href="https://namu.wiki/w/%ED%86%A0%EB%A7%88%ED%86%A0" target="_blank">토마토</a></td>--%>
-<%--                    <td>2022-08-03</td>--%>
-<%--                    <td>666</td>--%>
-<%--                </tr>--%>
+                %>
                 <tr>
-                    <td>5</td>
-                    <td><a href="https://namu.wiki/w/%EC%8A%A4%EC%9C%84%EC%8A%A4" target="_blank">스위스</a></td>
-                    <td>2022-07-28</td>
-                    <td>343</td>
+                    <td><%= list.get(i).getBbsID()%></td>
+                    <td><a href=""> <%= list.get(i).getBbsTitle().replaceAll(" ", " &nbsp").replaceAll("<", " &lt;").replaceAll("<", " &gt;").replaceAll("\n", "</br>")%> </a></td>
+                    <td><%= list.get(i).getBbsDate().substring(0,11)+ list.get(i).getBbsDate().substring(11,13)+"시" + list.get(i).getBbsDate().substring(14,16)+ "분" %></td>
+                    <td>000</td>
                 </tr>
-                <tr>
-                    <td>4</td>
-                    <td><a href="https://namu.wiki/w/%EC%9D%B8%EB%8F%84%EC%9D%B8" target="_blank">인도인</a></td>
-                    <td>2022-07-27</td>
-                    <td>343</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td><a href="https://namu.wiki/w/%EC%9C%A0%EC%84%B1" target="_blank">별똥별</a></td>
-                    <td>2022-07-21</td>
-                    <td>10710</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td><a href="https://namu.wiki/w/%EC%97%AD%EC%82%BC%EC%97%AD" target="_blank">역삼역</a></td>
-                    <td>2022-07-20</td>
-                    <td>575</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td><a href="https://namu.wiki/w/%EC%9A%B0%EC%98%81%EC%9A%B0" target="_blank">우영우</a></td>
-                    <td>2022-06-29</td>
-                    <td>353</td>
-                </tr>
+                <%
+                    }if(userID != null){
+
+                %>
             </table>
             <div class="go">
                 <div class="gobt1">
-                    <button type="submit" id="bwg"><a href="http://localhost:8080/MenoMeno/WritePage/Write.jsp">글 작성하기</a></button>
+                    <button type="submit" id="bwg"><a href="http://localhost:8080/MenoMeno/WritePage/Write.jsp">글
+                        작성하기</a></button>
                 </div>
                 <div class="gobt2">
-                    <button type="submit" id="bhg"><a href="http://localhost:8080/MenoMeno/MainPage/MainPage.jsp">홈으로 가기</a></button>
+                    <button type="submit" id="bhg"><a href="http://localhost:8080/MenoMeno/MainPage/MainPage.jsp">홈으로
+                        가기</a></button>
                 </div>
             </div>
             <div class="gobt">
+                <%
+                    if (pageNumber !=1){
+
+                %>
                 <div class="gobt3">
                     <button type="submit" id="bwg"><a>이전</a></button>
                 </div>
+                <%
+                    }if (bbsdao.nextPage(pageNumber+1)){
+                %>
                 <div class="gobt4">
                     <button type="submit" id="bhg"><a>다음</a></button>
                 </div>
+                <%
+                    }
+                %>
+                <%
+                    }
+                %>
             </div>
         </div>
     </div>

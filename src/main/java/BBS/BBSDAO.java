@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class BBSDAO {
 
@@ -63,7 +64,6 @@ public class BBSDAO {
             Connection conn=null;
             PreparedStatement ps=null;
             try {
-
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(dburl,dbID,dbpassword);
             String SQL="INSERT INTO BBS (bbsID,bbsTitle,userID,bbsDate,bbsContent,bbsAvailable) VALUES (?,?,?,?,?,?)";
@@ -93,5 +93,78 @@ public class BBSDAO {
         }
         return insertCount;
     }
-
+    public ArrayList<BBSDTO> getList(int pageNumber){
+        int insertCount=0;
+        Connection conn=null;
+        PreparedStatement ps=null;
+        ResultSet rs=null;
+        ArrayList<BBSDTO> list=new ArrayList<>();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(dburl,dbID,dbpassword);
+            String SQL="SELECT *FROM BBS WHERE bbsID <? AND bbsAvailable =1 ORDER  BY bbsID DESC LIMIT 10";
+            ps=conn.prepareStatement(SQL);
+            ps.setInt(1,getNext() -(pageNumber - 1 )* 10);
+            rs=ps.executeQuery();
+            while (rs.next()){
+                BBSDTO bbsdto=new BBSDTO();
+                bbsdto.setBbsID(rs.getInt(1));
+                bbsdto.setBbsTitle(rs.getString(2));
+                bbsdto.setUserID(rs.getString(3));
+                bbsdto.setBbsDate(rs.getString(4));
+                bbsdto.setBbsContent(rs.getString(5));
+                bbsdto.setBbsAvailable(rs.getInt(6));
+                list.add(bbsdto);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    return list;
+    }
+    public boolean nextPage (int pageNumber){
+        int insertCount=0;
+        Connection conn=null;
+        PreparedStatement ps=null;
+        ResultSet rs=null;
+        String SQL="SELECT * FROM BBS WHERE bbsID <? AND bbsAvailable =1";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(dburl,dbID,dbpassword);
+            ps=conn.prepareStatement(SQL);
+            ps.setInt(1,getNext() - (pageNumber - 1 ) * 10);
+            rs=ps.executeQuery();
+            if (rs.next()){
+                return true;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;//데이터 베이스 오류
+    }
+    public BBSDTO getBBS(int bbsID){
+        String SQL="SELECT * FROM BBS WHERE bbsID =? ";
+        Connection conn=null;
+        PreparedStatement ps=null;
+        ResultSet rs=null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(dburl,dbID,dbpassword);
+            PreparedStatement pstmt =conn.prepareStatement(SQL);
+            pstmt.setInt(1,bbsID);
+            rs=pstmt.executeQuery();
+            if (rs.next()){
+                BBSDTO bbsdto =new BBSDTO();
+                bbsdto.setBbsID(rs.getInt(1));
+                bbsdto.setBbsTitle(rs.getString(2));
+                bbsdto.setUserID(rs.getString(3));
+                bbsdto.setBbsDate(rs.getString(4));
+                bbsdto.setBbsContent(rs.getString(5));
+                bbsdto.setBbsAvailable(rs.getInt(6));
+                return bbsdto;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;//데이터 베이스 오류
+    }
 }

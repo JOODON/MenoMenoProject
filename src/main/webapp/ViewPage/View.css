@@ -1,15 +1,15 @@
 * {background:#FFE6E6;}
 
 body {
-    display: flex;
-    justify-content: center;
+    width: 30%;
+    margin: auto;
     margin-top: 5%;
     background: #FFE6E6;
     margin-bottom: 10%;
 }
 
 .bodyy {
-    height: 500px;
+    height: 80%;
     display: flex;
     border: 2px solid #FF5675;
     border-radius: 5px;
@@ -95,10 +95,6 @@ td {
 
 .go {display: flex;
     justify-content: center;}
-.gobt{
-    display: flex;
-    justify-content: space-between;
-}
 button {
     color: #FF5675;
     width: 100px;

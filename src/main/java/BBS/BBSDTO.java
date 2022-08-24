@@ -14,6 +14,9 @@ public class BBSDTO {
         this.userID = userID;
         this.bbsTitle = bbsTitle;
     }
+    public BBSDTO() {
+
+    }
 
     public int getBbsID() {
         return bbsID;
