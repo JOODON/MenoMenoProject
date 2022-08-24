@@ -34,7 +34,7 @@
     <div class="header-nav">
         <a href="#" class="main"><i class="fa-solid fa-house-chimney"></i> Home</a>
         <a href="#" class="Search"><i class="fa-solid fa-magnifying-glass"></i> Search</a>
-        <a href="#" class="Contact"><i class="fa-regular fa-address-book"></i> Contact</a>
+        <a href="http://localhost:8080/MenoMeno/ViewPage/View.jsp" class="Contact"><i class="fa-regular fa-address-book"></i> Contact</a>
         <%
             if(userID == null){
 

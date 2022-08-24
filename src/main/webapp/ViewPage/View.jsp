@@ -49,7 +49,7 @@
                 %>
                 <tr>
                     <td><%= list.get(i).getBbsID()%></td>
-                    <td><a href=""> <%= list.get(i).getBbsTitle().replaceAll(" ", " &nbsp").replaceAll("<", " &lt;").replaceAll("<", " &gt;").replaceAll("\n", "</br>")%> </a></td>
+                    <td><a href="http://localhost:8080/MenoMeno/ReadingPage/ReadingPage.jsp?bbsID=<%= list.get(i).getBbsID()%>"> <%= list.get(i).getBbsTitle().replaceAll(" ", " &nbsp").replaceAll("<", " &lt;").replaceAll("<", " &gt;").replaceAll("\n", "</br>")%> </a></td>
                     <td><%= list.get(i).getBbsDate().substring(0,11)+ list.get(i).getBbsDate().substring(11,13)+"시" + list.get(i).getBbsDate().substring(14,16)+ "분" %></td>
                     <td>000</td>
                 </tr>
@@ -74,13 +74,13 @@
 
                 %>
                 <div class="gobt3">
-                    <button type="submit" id="bwg"><a>이전</a></button>
+                    <button type="submit" id="bwg"><a href="http://localhost:8080/MenoMeno/ViewPage/View.jsp?pageNumber=<%= pageNumber - 1 %>">이전</a></button>
                 </div>
                 <%
                     }if (bbsdao.nextPage(pageNumber+1)){
                 %>
                 <div class="gobt4">
-                    <button type="submit" id="bhg"><a>다음</a></button>
+                    <button type="submit" id="bhg"><a href="http://localhost:8080/MenoMeno/ViewPage/View.jsp?pageNumber=<%= pageNumber + 1 %>">다음</a></button>
                 </div>
                 <%
                     }

@@ -9,7 +9,7 @@ body {
 }
 
 .bodyy {
-    height: 80%;
+    height: 75%;
     display: flex;
     border: 2px solid #FF5675;
     border-radius: 5px;
@@ -111,4 +111,8 @@ button {
 }
 .gobt2{
     margin-left: 15px;
+}
+.gobt{
+    display: flex;
+    justify-content: space-between;
 }
