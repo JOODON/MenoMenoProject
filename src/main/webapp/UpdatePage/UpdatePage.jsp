@@ -33,32 +33,31 @@
         script.println("location.href=login.jsp()");
         script.println("</script>");
     }
-
     int bbsID=0;
-
     if (request.getParameter("bbsID") != null) {
         bbsID= Integer.parseInt(request.getParameter("bbsID"));
     }
     if(bbsID==0){
         PrintWriter script = response.getWriter();
         script.println("<script>");
-        script.println("alert('유효하지 않은 글 입니다.')");
-        script.println("location.href=maim.jsp()");
+        script.println("alert('글 수정에 성공하셨습니다.')");
+        script.println("location.href=http://localhost:8080/MenoMeno/ReadingPage/ReadingPage.jsp");
         script.println("</script>");
     }
+
     BBSDTO bbsdto=new BBSDAO().getBBS(bbsID);
 
     if(!userID.equals(bbsdto.getUserID())){
         PrintWriter script = response.getWriter();
         script.println("<script>");
         script.println("alert('권한이 없습니다.')");
-        script.println("location.href=maim.jsp()");
+        script.println("location.href=http://localhost:8080/MenoMeno/ReadingPage/ReadingPage.jsp");
         script.println("</script>");
     }
 %>
 
 <div class="body">
-
+<form action="UpdateAction.jsp?bbsID=<%=bbsID%>" method="post">
     <div id="writee">
         <h1 id="space">글수정 양식</h1>
 
@@ -68,7 +67,7 @@
             </div>
 
             <div id="contents">
-                <textarea id="contentss" placeholder="내용을 입력하세요" required><%=bbsdto.getBbsContent()%></textarea>
+                <textarea id="contentss" name="bbsContent" placeholder="내용을 입력하세요" required><%=bbsdto.getBbsContent()%></textarea>
             </div>
 
             <div class="filebox">
@@ -80,11 +79,9 @@
             <div class="write">
                 <button type="submit" id="bw">글작성</button>
             </div>
-
         </div>
-
     </div>
-
+</form>
 </div>
 <script>
     $(document).ready(function(){

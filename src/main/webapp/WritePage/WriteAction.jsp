@@ -2,14 +2,11 @@
 <%@ page import="BBS.BBSDTO" %>
 <%@ page import="BBS.BBSDAO" %>
 <%@ page import="java.io.PrintWriter" %>
-
-
 <%
         request.setCharacterEncoding("UTF-8");
 
         String bbsTitle=null;
         String bbsContent=null;
-
         String userID=null;
 
         if (session.getAttribute("UserID")!=null){

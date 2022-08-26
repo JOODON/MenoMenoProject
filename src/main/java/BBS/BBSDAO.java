@@ -167,4 +167,32 @@ public class BBSDAO {
         }
         return null;//데이터 베이스 오류
     }
+    public int update(BBSDTO bbsdto){
+        int insertCount=0;
+        Connection conn=null; //접속하는 부분 설정
+        PreparedStatement ps=null;//호출시켜주는 부분 설정
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn=DriverManager.getConnection(dburl,dbID,dbpassword);
+            String sql="UPDATE bbs SET bbsTitle =? ,bbsContent =? WHERE bbsID=?";
+            ps=conn.prepareStatement(sql);
+
+            ps.setString(1, bbsdto.getBbsTitle());
+            ps.setString(2, bbsdto.getBbsContent());
+            ps.setInt(3,bbsdto.getBbsID());
+
+            insertCount = ps.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if(ps != null && conn != null){
+                try {
+                    ps.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }
+        return insertCount;
+    }
 }

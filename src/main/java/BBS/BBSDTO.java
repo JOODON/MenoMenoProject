@@ -17,6 +17,13 @@ public class BBSDTO {
     public BBSDTO() {
 
     }
+    public BBSDTO(int bbsID, String bbsTitle, String bbsContent) {
+        super();
+        this.bbsContent = bbsContent;
+        this.bbsID = bbsID;
+        this.bbsTitle = bbsTitle;
+
+    }
 
     public int getBbsID() {
         return bbsID;
