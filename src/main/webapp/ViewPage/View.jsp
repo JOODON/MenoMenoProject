@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.io.PrintWriter" %>
-<%@ page import="BBS.BBSDTO" %>
+<%@ page import="java.io.PrintWriter"%>
 <%@ page import="BBS.BBSDAO" %>
+<%@ page import="BBS.BBSDTO"%>
 <%@ page import="java.util.ArrayList"%>
 <html lang="en">
 <head>
@@ -29,6 +29,7 @@
     if(request.getParameter("pageNumber") != null ){
         pageNumber=Integer.parseInt(request.getParameter("pageNumber"));
     }
+
 %>
 <div class="bodyy">
     <div>
@@ -42,9 +43,8 @@
                     <th id="view">조회수</th>
                 </tr>
                 <%
-
                     BBSDAO bbsdao=new BBSDAO();
-                    ArrayList<BBSDTO> list =bbsdao.getList(pageNumber);
+                    ArrayList<BBSDTO> list = bbsdao.getList(pageNumber);
                     for (int i=0; i< list.size(); i++){
 
                 %>

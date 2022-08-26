@@ -9,7 +9,6 @@ public class TestBBS {
 
         BBSDTO bbsdto=new BBSDTO(bbsTitle,userID,bbsContent);
         BBSDAO bbsdao=new BBSDAO();
-        int insertCount= bbsdao.Wirte(bbsdto);
     }
 
 }
