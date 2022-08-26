@@ -68,7 +68,7 @@
              <%
                  if( userID !=null && userID.equals(bbsdto.getUserID())){
              %>
-                <a id="corre" name="corre" href="update.jsp?bbsID=<%= bbsID %>"> 수정 </a>
+                <a id="corre" name="corre" href="http://localhost:8080/MenoMeno/UpdatePage/UpdatePage.jsp?bbsID=<%= bbsID %>"> 수정 </a>
                 <a id="delete" name="delete" href="update.jsp?bbsID=<%= bbsID %>"> 삭제</a>
                 </span>
         <%
