@@ -43,8 +43,8 @@
                 </tr>
                 <%
 
-                    BBSDAO bbsdao1=new BBSDAO();
-                    ArrayList<BBSDTO> list =bbsdao1.getList(pageNumber);
+                    BBSDAO bbsdao=new BBSDAO();
+                    ArrayList<BBSDTO> list =bbsdao.getList(pageNumber);
                     for (int i=0; i< list.size(); i++){
 
                 %>

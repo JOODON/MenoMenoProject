@@ -94,32 +94,30 @@ public class BBSDAO {
         return insertCount;
     }
     public ArrayList<BBSDTO> getList(int pageNumber){
+        String SQL="SELECT *FROM BBS WHERE bbsID <? AND bbsAvailable =1 ORDER  BY bbsID DESC LIMIT 10";
         int insertCount=0;
         Connection conn=null;
         PreparedStatement ps=null;
         ResultSet rs=null;
         ArrayList<BBSDTO> list=new ArrayList<>();
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(dburl,dbID,dbpassword);
-            String SQL="SELECT *FROM BBS WHERE bbsID <? AND bbsAvailable =1 ORDER  BY bbsID DESC LIMIT 10";
-            ps=conn.prepareStatement(SQL);
-            ps.setInt(1,getNext() -(pageNumber - 1 )* 10);
-            rs=ps.executeQuery();
+            PreparedStatement pstmt =conn.prepareStatement(SQL);
+            pstmt.setInt(1,getNext() - (pageNumber - 1 ) * 10);
+            rs=pstmt.executeQuery();
             while (rs.next()){
-                BBSDTO bbsdto=new BBSDTO();
-                bbsdto.setBbsID(rs.getInt(1));
-                bbsdto.setBbsTitle(rs.getString(2));
-                bbsdto.setUserID(rs.getString(3));
-                bbsdto.setBbsDate(rs.getString(4));
-                bbsdto.setBbsContent(rs.getString(5));
-                bbsdto.setBbsAvailable(rs.getInt(6));
-                list.add(bbsdto);
+                BBSDTO bbs =new BBSDTO();
+                bbs.setBbsID(rs.getInt(1));
+                bbs.setBbsTitle(rs.getString(2));
+                bbs.setUserID(rs.getString(3));
+                bbs.setBbsDate(rs.getString(4));
+                bbs.setBbsContent(rs.getString(5));
+                bbs.setBbsAvailable(rs.getInt(6));
+                list.add(bbs);
             }
         }catch (Exception e){
             e.printStackTrace();
         }
-    return list;
+        return list;//데이터 베이스 오류
     }
     public boolean nextPage (int pageNumber){
         int insertCount=0;
