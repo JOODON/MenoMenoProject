@@ -38,7 +38,9 @@
         script.println("location.href=maim.jsp()");
         script.println("</script>");
     }
-    BBSDTO bbsdto = new BBSDAO().getBBS(bbsID);
+    BBSDTO bbsdto=new BBSDTO(bbsID);
+    BBSDAO bbsdao=new BBSDAO();
+    BBSDTO bbsdto1 = new BBSDAO().getBBS(bbsdto);
 %>
 <section class="container">
     <h1 class="posting_title"><%= bbsdto.getBbsTitle().replaceAll(" ", " &nbsp").replaceAll("<", " &lt;").replaceAll("<", " &gt;").replaceAll("\n", "</br>") %></h1>
@@ -69,7 +71,7 @@
                  if( userID !=null && userID.equals(bbsdto.getUserID())){
              %>
                 <a id="corre" name="corre" href="http://localhost:8080/MenoMeno/UpdatePage/UpdatePage.jsp?bbsID=<%= bbsID %>"> 수정 </a>
-                <a id="delete" name="delete" href="update.jsp?bbsID=<%= bbsID %>"> 삭제</a>
+                <a id="delete" name="delete" href=http://localhost:8080/MenoMeno/DeletePage/DeleteActionPage.jsp?bbsID=<%= bbsID %>"> 삭제</a>
                 </span>
         <%
             }

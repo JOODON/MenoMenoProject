@@ -42,8 +42,9 @@
                     <th id="view">조회수</th>
                 </tr>
                 <%
-                    BBSDAO bbsdao=new BBSDAO();
-                    ArrayList<BBSDTO> list =bbsdao.getList(pageNumber);
+
+                    BBSDAO bbsdao1=new BBSDAO();
+                    ArrayList<BBSDTO> list =bbsdao1.getList(pageNumber);
                     for (int i=0; i< list.size(); i++){
 
                 %>

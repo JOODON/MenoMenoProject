@@ -51,7 +51,7 @@
     if(insertCount==1){
       PrintWriter script=response.getWriter();
       script.println("<script>");
-      script.println("alert('글쓰기에 성공하셨습니다')");
+      script.println("alert('글 수정에 성공하셨습니다')");
       script.println("location.href='http://localhost:8080/MenoMeno/ViewPage/View.jsp'");
       script.println("</script>");
       script.close();

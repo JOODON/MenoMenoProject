@@ -141,7 +141,7 @@ public class BBSDAO {
         }
         return false;//데이터 베이스 오류
     }
-    public BBSDTO getBBS(int bbsID){
+    public BBSDTO getBBS(BBSDTO bbsdto){
         String SQL="SELECT * FROM BBS WHERE bbsID =? ";
         Connection conn=null;
         PreparedStatement ps=null;
@@ -150,10 +150,9 @@ public class BBSDAO {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(dburl,dbID,dbpassword);
             PreparedStatement pstmt =conn.prepareStatement(SQL);
-            pstmt.setInt(1,bbsID);
+            pstmt.setInt(1,bbsdto.getBbsID());
             rs=pstmt.executeQuery();
             if (rs.next()){
-                BBSDTO bbsdto =new BBSDTO();
                 bbsdto.setBbsID(rs.getInt(1));
                 bbsdto.setBbsTitle(rs.getString(2));
                 bbsdto.setUserID(rs.getString(3));
@@ -194,5 +193,21 @@ public class BBSDAO {
             }
         }
         return insertCount;
+    }
+    public int delete(BBSDTO bbsdto) {
+        int insertCount=0;
+        Connection conn=null; //접속하는 부분 설정
+        PreparedStatement ps=null;//호출시켜주는 부분 설정
+        String SQL="UPDATE BBS SET bbsAvailable=0 WHERE bbsID=?";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn=DriverManager.getConnection(dburl,dbID,dbpassword);
+            PreparedStatement pstmt =conn.prepareStatement(SQL);
+            pstmt.setInt(1,bbsdto.getBbsID());
+            return pstmt.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return -1;//데이터 베이스 오류
     }
 }

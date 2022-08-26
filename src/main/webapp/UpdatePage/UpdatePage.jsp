@@ -45,7 +45,9 @@
         script.println("</script>");
     }
 
-    BBSDTO bbsdto=new BBSDAO().getBBS(bbsID);
+    BBSDTO bbsdto=new BBSDTO(bbsID);
+    BBSDAO bbsdao = new BBSDAO();
+    BBSDTO bbsdto1=new BBSDAO().getBBS(bbsdto);
 
     if(!userID.equals(bbsdto.getUserID())){
         PrintWriter script = response.getWriter();
@@ -77,7 +79,8 @@
             </div>
 
             <div class="write">
-                <button type="submit" id="bw">글작성</button>
+                <button type="submit" id="bw">글 수정
+                </button>
             </div>
         </div>
     </div>

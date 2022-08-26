@@ -25,6 +25,11 @@ public class BBSDTO {
 
     }
 
+    public BBSDTO(int bbsID) {
+        super();
+        this.bbsID = bbsID;
+    }
+
     public int getBbsID() {
         return bbsID;
     }
