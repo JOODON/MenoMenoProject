@@ -1,14 +1,16 @@
 package BBS;
 
+import java.util.ArrayList;
+
 public class TestBBS {
     public static void main(String[] args) {
-        String bbsTitle="작성 테스트";
-        String userID="admin";
-        String bbsContent="백엔드작성 테스트";
 
+        BBSDAO bbsdao = new BBSDAO();
+        BBSDTO bbsdto = new BBSDTO();
+        ArrayList<BBSDTO> list = bbsdao.getList(0);
+        for (int i = 0; i < list.size(); i++) {
 
-//        BBSDTO bbsdto=new BBSDTO(bbsTitle,userID,bbsContent);
-        BBSDAO bbsdao=new BBSDAO();
+            System.out.println(list.get(i).getBbsID());
+        }
     }
-
 }

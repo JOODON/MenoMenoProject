@@ -233,16 +233,20 @@ import java.util.ArrayList;
 
 public class BBSDAO {
 
-    private Connection conn;
-    private ResultSet rs;
 
+
+    private static String dburl="jdbc:mysql://localhost:3307/MenoMenobbs";
+    private static String dbID="root";
+    private static String dbpassword="kkjjss103@";
+    Connection conn=null;
+    PreparedStatement ps=null;
+    ResultSet rs=null;
     public BBSDAO(){
+
         try {
-            String dburl="jdbc:mysql://localhost:3307/MenoMenoBBS";
-            String dbID="root";
-            String dbpassward="kkjjss103@";//비밀번호
+            int insertCount=0;
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(dburl,dbID,dbpassward);// 컨이라는 객체 안에다가 우리가 만든걸 다 넣어줌
+            conn = DriverManager.getConnection(dburl,dbID,dbpassword);
         }catch (Exception e){
             e.printStackTrace();
         }
