@@ -244,8 +244,6 @@ public class BBSDAO {
     public BBSDAO(){
 
         try {
-            int insertCount=0;
-            Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(dburl,dbID,dbpassword);
         }catch (Exception e){
             e.printStackTrace();
@@ -254,8 +252,8 @@ public class BBSDAO {
     public String getDate(){
         String SQL="SELECT NOW()";
         try {
-            PreparedStatement pstmt =conn.prepareStatement(SQL);
-            rs=pstmt.executeQuery();
+            PreparedStatement ps =conn.prepareStatement(SQL);
+            rs=ps.executeQuery();
             if(rs.next()){
                 return rs.getString(1);
             }
@@ -298,9 +296,9 @@ public class BBSDAO {
         String SQL="SELECT * FROM BBS WHERE bbsID <? AND bbsAvailable =1 ORDER  BY bbsID DESC LIMIT 10";
         ArrayList<BBSDTO> list=new ArrayList<>();
         try {
-            PreparedStatement pstmt =conn.prepareStatement(SQL);
-            pstmt.setInt(1,getNext() - (pageNumber - 1 ) * 10);
-            rs=pstmt.executeQuery();
+            PreparedStatement ps =conn.prepareStatement(SQL);
+            ps.setInt(1,getNext() - (pageNumber - 1 ) * 10);
+            rs=ps.executeQuery();
             while (rs.next()){
                 BBSDTO bbs =new BBSDTO();
                 bbs.setBbsID(rs.getInt(1));
