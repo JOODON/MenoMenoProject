@@ -3,6 +3,7 @@
 <%@ page import="BBS.BBSDAO" %>
 <%@ page import="BBS.BBSDTO"%>
 <%@ page import="java.util.ArrayList"%>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -25,7 +26,9 @@
     if (session.getAttribute("UserID")!= null){
         userID=(String) session.getAttribute("UserID");
     }
+
     int pageNumber=1;
+
     if(request.getParameter("pageNumber") != null ){
         pageNumber=Integer.parseInt(request.getParameter("pageNumber"));
     }
@@ -44,18 +47,19 @@
                 </tr>
                 <%
                     BBSDAO bbsdao=new BBSDAO();
-                    ArrayList<BBSDTO> list = bbsdao.getList(pageNumber);
+                    BBSDTO bbsdto=new BBSDTO();
+                    ArrayList<BBSDTO> list =bbsdao.getList(pageNumber);
                     for (int i=0; i< list.size(); i++){
 
                 %>
                 <tr>
-                    <td><%= list.get(i).getBbsID()%></td>
-                    <td><a href="http://localhost:8080/MenoMeno/ReadingPage/ReadingPage.jsp?bbsID=<%= list.get(i).getBbsID()%>"> <%= list.get(i).getBbsTitle().replaceAll(" ", " &nbsp").replaceAll("<", " &lt;").replaceAll("<", " &gt;").replaceAll("\n", "</br>")%> </a></td>
-                    <td><%= list.get(i).getBbsDate().substring(0,11)+ list.get(i).getBbsDate().substring(11,13)+"시" + list.get(i).getBbsDate().substring(14,16)+ "분" %></td>
+                    <td><%= list.get(i).getBbsID() %></td>
+                    <td><a href="http://localhost:8080/MenoMeno/ReadingPage/ReadingPage.jsp?bbsID?=<%= list.get(i).getBbsID()%>"></a><%= list.get(i).getBbsTitle().replaceAll(" ", " &nbsp").replaceAll("<", " &lt;").replaceAll("<", " &gt;").replaceAll("\n", "</br>")%></td>
+                    <td><%=list.get(i).getUserID()%></td>
                     <td>000</td>
                 </tr>
                 <%
-                    }if(userID != null){
+                    }
 
                 %>
             </table>
@@ -83,9 +87,6 @@
                 <div class="gobt4">
                     <button type="submit" id="bhg"><a href="http://localhost:8080/MenoMeno/ViewPage/View.jsp?pageNumber=<%= pageNumber + 1 %>">다음</a></button>
                 </div>
-                <%
-                    }
-                %>
                 <%
                     }
                 %>

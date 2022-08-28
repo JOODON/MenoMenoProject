@@ -8,28 +8,6 @@ public class BBSDTO {
     private String bbsContent;
     private int bbsAvailable;
 
-    public BBSDTO(String bbsContent, String userID, String bbsTitle) {
-        super();
-        this.bbsContent = bbsContent;
-        this.userID = userID;
-        this.bbsTitle = bbsTitle;
-    }
-    public BBSDTO() {
-
-    }
-    public BBSDTO(int bbsID, String bbsTitle, String bbsContent) {
-        super();
-        this.bbsContent = bbsContent;
-        this.bbsID = bbsID;
-        this.bbsTitle = bbsTitle;
-
-    }
-
-    public BBSDTO(int bbsID) {
-        super();
-        this.bbsID = bbsID;
-    }
-
     public int getBbsID() {
         return bbsID;
     }

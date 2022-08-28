@@ -7,7 +7,7 @@ public class TestBBS {
         String bbsContent="백엔드작성 테스트";
 
 
-        BBSDTO bbsdto=new BBSDTO(bbsTitle,userID,bbsContent);
+//        BBSDTO bbsdto=new BBSDTO(bbsTitle,userID,bbsContent);
         BBSDAO bbsdao=new BBSDAO();
     }
 

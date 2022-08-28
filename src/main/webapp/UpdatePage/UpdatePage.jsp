@@ -33,29 +33,31 @@
         script.println("location.href=login.jsp()");
         script.println("</script>");
     }
+
     int bbsID=0;
+
     if (request.getParameter("bbsID") != null) {
         bbsID= Integer.parseInt(request.getParameter("bbsID"));
     }
+
     if(bbsID==0){
         PrintWriter script = response.getWriter();
         script.println("<script>");
-        script.println("alert('글 수정에 성공하셨습니다.')");
-        script.println("location.href=http://localhost:8080/MenoMeno/ReadingPage/ReadingPage.jsp");
+        script.println("alert('유효하지 않은 글 입니다.')");
+        script.println("location.href=maim.jsp()");
         script.println("</script>");
     }
 
-    BBSDTO bbsdto=new BBSDTO(bbsID);
-    BBSDAO bbsdao = new BBSDAO();
-    BBSDTO bbsdto1=new BBSDAO().getBBS(bbsdto);
+    BBSDTO bbs=new BBSDAO().getBBS(bbsID);
 
-    if(!userID.equals(bbsdto.getUserID())){
+    if(!userID.equals(bbs.getUserID())){
         PrintWriter script = response.getWriter();
         script.println("<script>");
         script.println("alert('권한이 없습니다.')");
-        script.println("location.href=http://localhost:8080/MenoMeno/ReadingPage/ReadingPage.jsp");
+        script.println("location.href=maim.jsp()");
         script.println("</script>");
     }
+
 %>
 
 <div class="body">

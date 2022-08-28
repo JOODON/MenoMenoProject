@@ -5,15 +5,14 @@
 <%@ page import="BBS.BBSDTO" %>
 <% request.setCharacterEncoding("UTF-8");%>
 
-<%
-  String bbsTitle=null;
-  String bbsContent=null;
-  String userID=null;
-  int bbsID=0;
 
+
+<%
+  String userID=null;
   if (session.getAttribute("UserID")!=null){
     userID=(String) session.getAttribute("UserID");
   }
+
   if(userID == null){
     PrintWriter script=response.getWriter();
     script.println("<script>");
@@ -21,41 +20,51 @@
     script.println("location.href='http://localhost:8080/MenoMeno/Login/login.jsp'");
     script.println("</script>");
   }
-  else {
-    if (request.getParameter("bbsTitle") != null) {
-      bbsTitle=(String) request.getParameter("bbsTitle");
-    }
-    if (request.getParameter("bbsContent") != null) {
-      bbsContent=(String) request.getParameter("bbsContent");
-    }
-    if (request.getParameter("bbsID") != null) {
-      bbsID= Integer.parseInt(request.getParameter("bbsID"));
-    }
 
-    if(bbsTitle.equals("")|| bbsContent.equals("")){
-      PrintWriter script=response.getWriter();
+  int bbsID=0;
+
+  if (request.getParameter("bbsID") != null) {
+    bbsID= Integer.parseInt(request.getParameter("bbsID"));
+  }
+  if(bbsID==0){
+    PrintWriter script = response.getWriter();
+    script.println("<script>");
+    script.println("alert('유효하지 않은 글 입니다.')");
+    script.println("location.href=maim.jsp()");
+    script.println("</script>");
+  }
+  BBSDTO bbs=new BBSDAO().getBBS(bbsID);
+  if(!userID.equals(bbs.getUserID())){
+    PrintWriter script = response.getWriter();
+    script.println("<script>");
+    script.println("alert('권한이 없습니다.')");
+    script.println("location.href=maim.jsp()");
+    script.println("</script>");
+  } else {
+    if (request.getParameter("bbsTitle") == null || request.getParameter("bbsContent") == null
+            || request.getParameter("bbsTitle").equals("") || request.getParameter("bbsContent").equals("")) {
+      PrintWriter script = response.getWriter();
       script.println("<script>");
-      script.println("alert('입력 안된 사항이 있습니다!')");
-      script.println("location.href='history.back()'");
+      script.println("alert('입력하지 않으신 부분이 있습니다')");
+      script.println("history.back()");
       script.println("</script>");
-      script.close();
-      return;
-    }
+    } else {
+      BBSDAO bbsdao = new BBSDAO();
+      int result = bbsdao.update(bbsID,request.getParameter("bbsTitle"),request.getParameter("bbsContent"));
 
-    BBSDTO bbsdto=new BBSDTO(bbsID,bbsTitle,bbsContent);
-
-    BBSDAO bbsdao=new BBSDAO();
-
-    int insertCount= bbsdao.update(bbsdto);
-
-    if(insertCount==1){
-      PrintWriter script=response.getWriter();
-      script.println("<script>");
-      script.println("alert('글 수정에 성공하셨습니다')");
-      script.println("location.href='http://localhost:8080/MenoMeno/ViewPage/View.jsp'");
-      script.println("</script>");
-      script.close();
-      return;
+      if (result == -1) {
+        PrintWriter script = response.getWriter();
+        script.println("<script>");
+        script.println("alert('글수정에 실패하셨습니다.')");
+        script.println("history.back()");
+        script.println("</script>");
+      } else {
+        PrintWriter script = response.getWriter();
+        script.println("<script>");
+        script.println("location.href='main.jsp'");
+        script.println("</script>");
+      }
     }
   }
 %>
+
